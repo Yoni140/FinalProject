@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommended Items</title>
+</head>
+<body>
+    <h1>Recommended Items</h1>
+    <ul>
+        {% for item in recommended_items %}
+            <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="/lists">Back to All Lists</a>
+</body>
+</html>

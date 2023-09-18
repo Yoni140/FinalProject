@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Item to Shopping List</title>
+</head>
+<body>
+    <h1>Add Item to Shopping List</h1>
+    <form method="POST" action="/add">
+        <label for="item_name">Item Name:</label>
+        <input type="text" id="item_name" name="item_name" required>
+        <br>
+        <label for="list_name">List Name:</label>
+        <input type="text" id="list_name" name="list_name" value="Default">
+        <br>
+        <label for="url">Item URL:</label>
+        <input type="text" id="url" name="url">
+        <br>
+        <label for="recommended">Recommended:</label>
+        <input type="checkbox" id="recommended" name="recommended">
+        <br>
+        <button type="submit">Add Item</button>
+        <button type="submit" name="action" value="save">Save List</button>
+    </form>
+    <br>
+    <a href="/lists">View Shopping List</a>
+</body>
+</html>
