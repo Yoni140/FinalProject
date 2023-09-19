@@ -14,9 +14,16 @@ class Item(db.Model):
     ordered = db.Column(db.Boolean, default=False)
 
 
+
 @app.route('/')
 def index():
-    return "Welcome to the Shopping List App"
+    return '''
+    Welcome to the Trackshops<br>
+    <a href="/add">Add Item</a><br>
+    <a href="/lists">View Lists</a><br>
+    <a href="/recommended">View Recommended Items</a><br>
+    <a href="/order_history">Order History</a>
+    '''
 
 
 @app.route('/add', methods=['POST'])
