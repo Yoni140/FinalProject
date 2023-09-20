@@ -12,18 +12,21 @@ class Item(db.Model):
     url = db.Column(db.String(100), nullable=False)
     recommended = db.Column(db.Boolean, default=False)
     ordered = db.Column(db.Boolean, default=False)
+class Order(db.Model):
+    id = db.Column(db.String(100), primary_key=True)
+    name = db.Column(db.String(100))
+    status = db.Column(db.String(100))
+
+
+
+
 
 
 
 @app.route('/')
 def index():
-    return '''
-    Welcome to the Trackshops<br>
-    <a href="/add">Add Item</a><br>
-    <a href="/lists">View Lists</a><br>
-    <a href="/recommended">View Recommended Items</a><br>
-    <a href="/order_history">Order History</a>
-    '''
+    return render_template('index.html')
+
 
 
 @app.route('/add', methods=['POST'])
@@ -90,13 +93,39 @@ def lists():
 
 @app.route('/order_history')
 def order_history():
-    # Retrieve a list of items that have been ordered in the past
-    ordered_items = Item.query.filter_by(ordered=True).all()
-    return render_template('order_history.html', ordered_items=ordered_items)
+    orders = Order.query.all()
+    return render_template('order_history.html', orders=orders)
 
+
+@app.route('/add_order', methods=['POST'])
+def add_order():
+    if request.method == 'POST':
+        order_id = request.form.get('order_id')
+        name = request.form.get('name')
+        status = request.form.get('status')
+
+        if order_id and name and status:
+            new_order = Order(id=order_id, name=name, status=status)
+            try:
+                db.session.add(new_order)
+                db.session.commit()
+                return redirect('/order_history')
+            except Exception as e:
+                db.session.rollback()
+                print("Failed to add order")
+                print(e)
+                return "Failed to add order", 400
+    return render_template('add_order.html')
+
+
+
+
+@app.route('/add_order', methods=['GET'])
+def get_add_order():
+    return render_template('add_order.html')
 
 
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()  # Create database tables
+        db.create_all()
     app.run(debug=True)

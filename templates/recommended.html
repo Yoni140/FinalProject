@@ -2,12 +2,52 @@
 <html>
 <head>
     <title>Recommended Items</title>
+    <style>
+        /* Common styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        h1 {
+            color: blue;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Recommended Items specific styles (can be similar to All Lists) */
+        .list-group {
+            list-style: none;
+            padding-left: 0;
+        }
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+    </style>
 </head>
 <body>
     <h1>Recommended Items</h1>
-    <ul>
+    <ul class="list-group">
         {% for item in recommended_items %}
-            <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+            <li class="list-group-item">
+                <a href="{{ item.url }}">{{ item.name }}</a>
+            </li>
         {% endfor %}
     </ul>
     <a href="/lists">Back to All Lists</a>

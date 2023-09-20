@@ -2,6 +2,47 @@
 <html>
 <head>
     <title>Order History</title>
+    <style>
+        /* Common styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        h1 {
+            color: blue;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button styles */
+        .add-order-button {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .add-order-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <h1>Order History</h1>
@@ -10,6 +51,8 @@
             <li><a href="{{ item.url }}">{{ item.name }}</a></li>
         {% endfor %}
     </ul>
+    <a href="/add_order" class="add-order-button">Add New Order</a>
+    <br>
     <a href="/lists">Back to All Lists</a>
     <br>
     <a href="/">Return to Front Page</a>
